@@ -1,4 +1,4 @@
-# InstantCMS 1.11.0 — community revival
+# InstantCMS 1.11.0
 
 This is an **unofficial, community-maintained** release by new maintainers, based on
 **InstantCMS 1.10.7** (2016-07-26, GNU/GPL v2), source:
