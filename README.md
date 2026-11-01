@@ -1,4 +1,4 @@
-# InstantCMS 1.11.0 — community revival
+# InstantCMS 1.11.0
 
 **InstantCMS 1.11.0** is an unofficial version of the free CMS
 [InstantCMS](https://www.instantcms.ru/) **1.10.7** (2016), maintained by the community. It has been
