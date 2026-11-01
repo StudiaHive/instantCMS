@@ -14,6 +14,7 @@
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_While extends Smarty_Internal_CompileBase
 {
     /**
@@ -70,6 +71,7 @@ class Smarty_Internal_Compile_While extends Smarty_Internal_CompileBase
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Whileclose extends Smarty_Internal_CompileBase
 {
     /**

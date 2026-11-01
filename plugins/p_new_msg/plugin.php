@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class p_new_msg extends cmsPlugin {
 
     public function __construct(){

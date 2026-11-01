@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class cmsUploadPhoto {
 
     private static $instance;

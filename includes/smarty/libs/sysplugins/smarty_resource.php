@@ -14,6 +14,7 @@
  * @package    Smarty
  * @subpackage TemplateResources
  */
+#[\AllowDynamicProperties]
 abstract class Smarty_Resource
 {
     /**
@@ -625,6 +626,7 @@ abstract class Smarty_Resource
  * @property boolean $template  Extended Template reference
  * @property string  $content   Source Content
  */
+#[\AllowDynamicProperties]
 class Smarty_Template_Source
 {
     /**
@@ -848,6 +850,7 @@ class Smarty_Template_Source
  * @author     Rodney Rehm
  * @property string $content compiled content
  */
+#[\AllowDynamicProperties]
 class Smarty_Template_Compiled
 {
     /**

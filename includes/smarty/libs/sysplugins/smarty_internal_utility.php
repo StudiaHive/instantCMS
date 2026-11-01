@@ -33,6 +33,7 @@
  * @package    Smarty
  * @subpackage Security
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Utility
 {
     /**

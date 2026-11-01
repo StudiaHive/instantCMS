@@ -691,7 +691,7 @@ class bbcode {
                     }
                     if ( !$val['name'] ) {
                         end($open_tags);
-                        list($ult_key, $ultimate) = each($open_tags);
+                        $ult_key = key($open_tags); $ultimate = current($open_tags);
                         $val['name'] = $ultimate;
                         $structure[++$structure_key] = $val;
                         $structure[$structure_key]['level'] = --$level;
@@ -919,10 +919,9 @@ class bbcode {
 
         return preg_replace_callback(
           '#<a href="/go/url=([^"]+)"#',
-          create_function(
-              '$matches',
-              'if (!strstr($matches[1], $_SERVER[\'HTTP_HOST\'])){ return "<a rel=\"nofollow\" title=\"".htmlspecialchars($matches[1])."\" href=\"/go/url=-".base64_encode($matches[1])."\""; } else { return "<a href=\"".htmlspecialchars($matches[1])."\""; }'
-          ),
+          function($matches){
+              if (!strstr($matches[1], $_SERVER['HTTP_HOST'])){ return "<a rel=\"nofollow\" title=\"".htmlspecialchars($matches[1])."\" href=\"/go/url=-".base64_encode($matches[1])."\""; } else { return "<a href=\"".htmlspecialchars($matches[1])."\""; }
+          },
           $text
         );
 

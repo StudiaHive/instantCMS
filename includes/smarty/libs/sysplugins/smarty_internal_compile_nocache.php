@@ -14,6 +14,7 @@
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Nocache extends Smarty_Internal_CompileBase
 {
     /**
@@ -46,6 +47,7 @@ class Smarty_Internal_Compile_Nocache extends Smarty_Internal_CompileBase
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Nocacheclose extends Smarty_Internal_CompileBase
 {
     /**

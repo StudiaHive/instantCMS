@@ -13,6 +13,7 @@
 /**
  * Класс инициализации шаблонизатора Smarty
  */
+#[\AllowDynamicProperties]
 class smartyTpl{
 
     private static $i_smarty;

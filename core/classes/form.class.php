@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class cmsForm {
 
     private $kinds       = array('text','link','textarea','checkbox','radiogroup','list','menu','file');
@@ -246,7 +247,7 @@ class cmsForm {
 
 		$formObj = new self($form_id,$values);
 
-		if(!$formObj->form || !$formObj->form_fields) { return ''; }
+		if(!$formObj->form || !$formObj->form_fields) { return array(); }
 
         // Формируем значения полей формы
         foreach ($formObj->form_fields as $key => $field) {

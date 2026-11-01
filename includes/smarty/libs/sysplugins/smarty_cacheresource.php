@@ -13,6 +13,7 @@
  * @subpackage Cacher
  * @author     Rodney Rehm
  */
+#[\AllowDynamicProperties]
 abstract class Smarty_CacheResource
 {
     /**
@@ -248,6 +249,7 @@ abstract class Smarty_CacheResource
  * @subpackage TemplateResources
  * @author     Rodney Rehm
  */
+#[\AllowDynamicProperties]
 class Smarty_Template_Cached
 {
     /**

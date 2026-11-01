@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class p_auto_forum extends cmsPlugin {
 
     public function __construct(){

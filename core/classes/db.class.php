@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class cmsDatabase {
 
     private static $instance;
@@ -40,7 +41,7 @@ class cmsDatabase {
         $this->db_prefix = cmsConfig::getConfig('db_prefix').'_';
 	}
 	public function __destruct(){
-		mysqli_close($this->db_link);
+		if ($this->db_link) { @mysqli_close($this->db_link); }
 	}
 
 // ============================================================================ //
@@ -83,13 +84,22 @@ class cmsDatabase {
 
 		$inConf = cmsConfig::getInstance();
 
-		$db_link = mysqli_connect($inConf->db_host, $inConf->db_user, $inConf->db_pass, $inConf->db_base);
+        // PHP 8.1+ throws mysqli exceptions by default; the CMS expects
+        // the classic "return false + check errno()" behaviour.
+        if (function_exists('mysqli_report')) { mysqli_report(MYSQLI_REPORT_OFF); }
 
-        if (mysqli_connect_errno()) {
+		$db_link = @mysqli_connect($inConf->db_host, $inConf->db_user, $inConf->db_pass, $inConf->db_base);
+
+        if (!$db_link || mysqli_connect_errno()) {
            die('Cannot connect to MySQL server: ' . mysqli_connect_error());
         }
 
 		mysqli_set_charset($db_link, 'utf8');
+
+        // MySQL 5.7/8.0 enable strict modes by default (STRICT_TRANS_TABLES,
+        // NO_ZERO_DATE, ONLY_FULL_GROUP_BY ...). The CMS was written for the
+        // permissive MySQL 5.0-5.6 behaviour, so use a compatible session mode.
+        mysqli_query($db_link, "SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION'");
 
 		return $db_link;
 
@@ -204,23 +214,28 @@ class cmsDatabase {
 // ============================================================================ //
 // ============================================================================ //
 	public function num_rows($result){
+		if (!($result instanceof mysqli_result)) { return 0; }
 		return mysqli_num_rows($result);
 	}
 // ============================================================================ //
 // ============================================================================ //
 	public function fetch_assoc($result){
+		if (!($result instanceof mysqli_result)) { return null; }
 		return mysqli_fetch_assoc($result);
 	}
 // ============================================================================ //
 // ============================================================================ //
 	public function fetch_row($result){
+		if (!($result instanceof mysqli_result)) { return null; }
 		return mysqli_fetch_row($result);
 	}
 
 // ============================================================================ //
 // ============================================================================ //
     public function free_result($result){
-		return mysqli_free_result($result);
+		if (!($result instanceof mysqli_result)) { return false; }
+		mysqli_free_result($result);
+		return true;
 	}
 // ============================================================================ //
 // ============================================================================ //
@@ -640,7 +655,7 @@ class cmsDatabase {
 // ============================================================================ //
 // ============================================================================ //
 
-	public function addRootNsCategory($table, $differ='', $cat){
+	public function addRootNsCategory($table, $differ, $cat){
 
 		$cat_id = cmsCore::getInstance()->nestedSetsInit($table)->AddRootNode($differ);
 		if(!$cat_id) { return false; }

@@ -14,6 +14,7 @@
  * @package    Smarty
  * @subpackage Template
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Data
 {
     /**
@@ -452,6 +453,7 @@ class Smarty_Internal_Data
  * @package    Smarty
  * @subpackage Template
  */
+#[\AllowDynamicProperties]
 class Smarty_Data extends Smarty_Internal_Data
 {
     /**
@@ -493,6 +495,7 @@ class Smarty_Data extends Smarty_Internal_Data
  * @package    Smarty
  * @subpackage Template
  */
+#[\AllowDynamicProperties]
 class Smarty_Variable
 {
     /**
@@ -546,6 +549,7 @@ class Smarty_Variable
  * @package    Smarty
  * @subpackage Template
  */
+#[\AllowDynamicProperties]
 class Undefined_Smarty_Variable
 {
     /**

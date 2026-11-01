@@ -13,6 +13,7 @@
 
 if(!defined('VALID_CMS')) { die('ACCESS DENIED'); }
 
+#[\AllowDynamicProperties]
 class cms_model_board{
 
 	public $root_cat  = array();
@@ -487,7 +488,7 @@ class cms_model_board{
 /* ==================================================================================================== */
 /* ==================================================================================================== */
 
-	public function uploadPhoto($old_file = '', $cat) {
+	public function uploadPhoto($old_file, $cat) {
 
 		// Загружаем класс загрузки фото
 		cmsCore::loadClass('upload_photo');

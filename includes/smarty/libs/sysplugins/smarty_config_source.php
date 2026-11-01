@@ -17,6 +17,7 @@
  * @property int    $timestamp
  * @property bool   $exists
  */
+#[\AllowDynamicProperties]
 class Smarty_Config_Source extends Smarty_Template_Source
 {
     /**

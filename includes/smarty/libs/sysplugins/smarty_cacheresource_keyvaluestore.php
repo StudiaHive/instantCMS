@@ -28,6 +28,7 @@
  * @subpackage Cacher
  * @author     Rodney Rehm
  */
+#[\AllowDynamicProperties]
 abstract class Smarty_CacheResource_KeyValueStore extends Smarty_CacheResource
 {
     /**

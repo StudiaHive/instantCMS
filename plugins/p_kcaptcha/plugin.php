@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class p_kcaptcha extends cmsPlugin {
 
     public function __construct() {

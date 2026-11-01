@@ -9,6 +9,7 @@
  * @subpackage Compiler
  * @author     Uwe Tews
  */
+#[\AllowDynamicProperties]
 class TPC_yyToken implements ArrayAccess
 {
     public $string = '';
@@ -34,16 +35,19 @@ class TPC_yyToken implements ArrayAccess
         return $this->_string;
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->metadata[$offset]);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->metadata[$offset];
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if ($offset === null) {
@@ -68,12 +72,14 @@ class TPC_yyToken implements ArrayAccess
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->metadata[$offset]);
     }
 }
 
+#[\AllowDynamicProperties]
 class TPC_yyStackEntry
 {
     public $stateno; /* The state-number */
@@ -86,6 +92,7 @@ class TPC_yyStackEntry
 ;
 
 #line 12 "smarty_internal_configfileparser.y"
+#[\AllowDynamicProperties]
 class Smarty_Internal_Configfileparser #line 80 "smarty_internal_configfileparser.php"
 {
     #line 14 "smarty_internal_configfileparser.y"

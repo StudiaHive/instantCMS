@@ -172,7 +172,7 @@ function img_resize($src, $dest, $maxwidth, $maxheight = 160, $is_square = false
         if ($new_width > $new_height) {
 
             imagecopyresampled(
-                    $idest, $isrc, 0, 0, round(( max($new_width, $new_height) - min($new_width, $new_height) ) / 2), 0, $maxwidth, $maxwidth, min($new_width, $new_height), min($new_width, $new_height)
+                    $idest, $isrc, 0, 0, (int)round(( max($new_width, $new_height) - min($new_width, $new_height) ) / 2), 0, $maxwidth, $maxwidth, min($new_width, $new_height), min($new_width, $new_height)
             );
         }
 
@@ -201,6 +201,10 @@ function img_resize($src, $dest, $maxwidth, $maxheight = 160, $is_square = false
             $new_width *= $hscale;
             $new_height *= $hscale;
         }
+
+        // PHP 8.1+: GD functions require integer sizes (and >= 1 on PHP 8)
+        $new_width  = max(1, (int)$new_width);
+        $new_height = max(1, (int)$new_height);
 
         $idest = imagecreatetruecolor($new_width, $new_height);
 

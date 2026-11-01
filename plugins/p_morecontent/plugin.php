@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class p_morecontent extends cmsPlugin {
 
     public function __construct(){

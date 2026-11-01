@@ -13,6 +13,7 @@
  * @package    Smarty
  * @subpackage PluginsInternal
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Get_Include_Path
 {
     /**

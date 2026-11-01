@@ -84,6 +84,7 @@ function search_forum($query, $look){
 
 }
 
+#[\AllowDynamicProperties]
 class postPage {
 
     private static $post_ids = array();

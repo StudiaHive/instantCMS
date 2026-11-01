@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class cmsPhoto {
 
     private static $instance;
@@ -213,7 +214,7 @@ class cmsPhoto {
      * Удаляет файл фото с папок загрузки
      * @return bool
      */
-	public function deletePhotoFile($file='', $inUploadPhoto){
+	public function deletePhotoFile($file, $inUploadPhoto){
 
 		if (!($file && is_object($inUploadPhoto))) { return false; }
 
@@ -297,7 +298,7 @@ class cmsPhoto {
      * @param obj $inUploadPhoto
      * @return bool
      */
-    public function deleteAlbum($album_id, $differ = '', $inUploadPhoto) {
+    public function deleteAlbum($album_id, $differ, $inUploadPhoto) {
 
 		$album = $this->inDB->getNsCategory('cms_photo_albums', $album_id, $differ);
 		if(!$album) { return false; }

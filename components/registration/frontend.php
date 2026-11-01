@@ -349,7 +349,7 @@ if ($do=='view'){
     }
 
     $item = cmsUser::sessionGet('item');
-    if($item){ cmsUser::sessionDel('item'); }
+    if($item){ cmsUser::sessionDel('item'); } else { $item = array(); }
 
     if(empty($item['birthdate'])){
         $item['birthdate'] = date('Y-m-d');

@@ -13,6 +13,7 @@
 /**
  * Пример класса для работы с php шаблонами
  */
+#[\AllowDynamicProperties]
 class phpTpl{
 
     private $tpl_vars   = array();

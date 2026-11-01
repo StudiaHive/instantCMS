@@ -14,6 +14,7 @@
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Foreach extends Smarty_Internal_CompileBase
 {
     /**
@@ -173,6 +174,7 @@ class Smarty_Internal_Compile_Foreach extends Smarty_Internal_CompileBase
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Foreachelse extends Smarty_Internal_CompileBase
 {
     /**
@@ -202,6 +204,7 @@ class Smarty_Internal_Compile_Foreachelse extends Smarty_Internal_CompileBase
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Foreachclose extends Smarty_Internal_CompileBase
 {
     /**

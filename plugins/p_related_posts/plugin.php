@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class p_related_posts extends cmsPlugin {
 
 	public function __construct(){

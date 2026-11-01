@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class cmsAdmin extends cmsCore {
 
     ////////////////////////////////////////////////////////////////////////////
@@ -304,7 +305,7 @@ class cmsAdmin extends cmsCore {
         }
 
         //удаляем компонент из базы, но только если он не системный
-        cmsDatabase::getInstance()->delete('cms_components', "id = '$component_id' AND system = 0");
+        cmsDatabase::getInstance()->delete('cms_components', "id = '$component_id' AND `system` = 0");
 
         //компонент успешно удален
         return true;

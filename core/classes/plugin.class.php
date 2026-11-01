@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class cmsPlugin {
 
     protected $inDB;
@@ -29,7 +30,7 @@ class cmsPlugin {
         $this->inCore = cmsCore::getInstance();
         $this->inDB   = cmsDatabase::getInstance();
         $this->inPage = cmsPage::getInstance();
-        $this->config = array_merge($this->config, $this->inCore->loadPluginConfig(get_called_class()));
+        $this->config = array_merge((array)$this->config, (array)$this->inCore->loadPluginConfig(get_called_class()));
 
     }
 

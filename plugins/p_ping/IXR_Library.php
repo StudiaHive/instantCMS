@@ -39,12 +39,13 @@
  */
 
 
+#[\AllowDynamicProperties]
 class IXR_Value
 {
     var $data;
     var $type;
 
-    function IXR_Value($data, $type = false)
+    function __construct($data, $type = false)
     {
         $this->data = $data;
         if (!$type) {
@@ -168,6 +169,7 @@ class IXR_Value
  * @since 1.5
  *
  */
+#[\AllowDynamicProperties]
 class IXR_Message
 {
     var $message;
@@ -188,7 +190,7 @@ class IXR_Message
     // The XML parser
     var $_parser;
 
-    function IXR_Message($message)
+    function __construct($message)
     {
         $this->message =& $message;
     }
@@ -339,6 +341,7 @@ class IXR_Message
  * @package IXR
  * @since 1.5
  */
+#[\AllowDynamicProperties]
 class IXR_Server
 {
     var $data;
@@ -346,7 +349,7 @@ class IXR_Server
     var $message;
     var $capabilities;
 
-    function IXR_Server($callbacks = false, $data = false, $wait = false)
+    function __construct($callbacks = false, $data = false, $wait = false)
     {
         $this->setCapabilities();
         if ($callbacks) {
@@ -543,13 +546,14 @@ EOD;
  * @package IXR
  * @since 1.5
  */
+#[\AllowDynamicProperties]
 class IXR_Request
 {
     var $method;
     var $args;
     var $xml;
 
-    function IXR_Request($method, $args)
+    function __construct($method, $args)
     {
         $this->method = $method;
         $this->args = $args;
@@ -587,6 +591,7 @@ EOD;
  * @since 1.5
  *
  */
+#[\AllowDynamicProperties]
 class IXR_Client
 {
     var $server;
@@ -601,7 +606,7 @@ class IXR_Client
     // Storage place for an error message
     var $error = false;
 
-    function IXR_Client($server, $path = false, $port = 80, $timeout = 15)
+    function __construct($server, $path = false, $port = 80, $timeout = 15)
     {
         if (!$path) {
             // Assume we have been given a URL instead
@@ -737,12 +742,13 @@ class IXR_Client
  * @package IXR
  * @since 1.5
  */
+#[\AllowDynamicProperties]
 class IXR_Error
 {
     var $code;
     var $message;
 
-    function IXR_Error($code, $message)
+    function __construct($code, $message)
     {
         $this->code = $code;
         $this->message = htmlspecialchars($message);
@@ -779,6 +785,7 @@ EOD;
  * @package IXR
  * @since 1.5
  */
+#[\AllowDynamicProperties]
 class IXR_Date {
     var $year;
     var $month;
@@ -788,7 +795,7 @@ class IXR_Date {
     var $second;
     var $timezone;
 
-    function IXR_Date($time)
+    function __construct($time)
     {
         // $time can be a PHP timestamp or an ISO one
         if (is_numeric($time)) {
@@ -842,11 +849,12 @@ class IXR_Date {
  * @package IXR
  * @since 1.5
  */
+#[\AllowDynamicProperties]
 class IXR_Base64
 {
     var $data;
 
-    function IXR_Base64($data)
+    function __construct($data)
     {
         $this->data = $data;
     }
@@ -863,12 +871,13 @@ class IXR_Base64
  * @package IXR
  * @since 1.5
  */
+#[\AllowDynamicProperties]
 class IXR_IntrospectionServer extends IXR_Server
 {
     var $signatures;
     var $help;
 
-    function IXR_IntrospectionServer()
+    function __construct()
     {
         $this->setCallbacks();
         $this->setCapabilities();
@@ -1026,13 +1035,14 @@ class IXR_IntrospectionServer extends IXR_Server
  * @package IXR
  * @since 1.5
  */
+#[\AllowDynamicProperties]
 class IXR_ClientMulticall extends IXR_Client
 {
     var $calls = array();
 
-    function IXR_ClientMulticall($server, $path = false, $port = 80)
+    function __construct($server, $path = false, $port = 80)
     {
-        parent::IXR_Client($server, $path, $port);
+        parent::__construct($server, $path, $port);
         $this->useragent = 'The Incutio XML-RPC PHP Library (multicall client)';
     }
 
@@ -1062,6 +1072,7 @@ class IXR_ClientMulticall extends IXR_Client
  * @copyright (c) 2004-2005 Jason Stirk
  * @package IXR
  */
+#[\AllowDynamicProperties]
 class IXR_ClientSSL extends IXR_Client
 {
     /**
@@ -1101,9 +1112,9 @@ class IXR_ClientSSL extends IXR_Client
      * @param string $server URL of the Server to connect to
      * @since 0.1.0
      */
-    function IXR_ClientSSL($server, $path = false, $port = 443, $timeout = false)
+    function __construct($server, $path = false, $port = 443, $timeout = false)
     {
-        parent::IXR_Client($server, $path, $port, $timeout);
+        parent::__construct($server, $path, $port, $timeout);
         $this->useragent = 'The Incutio XML-RPC PHP Library for SSL';
 
         // Set class fields
@@ -1286,14 +1297,15 @@ class IXR_ClientSSL extends IXR_Client
  * @copyright Copyright (c) 2005 Jason Stirk
  * @package IXR
  */
+#[\AllowDynamicProperties]
 class IXR_ClassServer extends IXR_Server
 {
     var $_objects;
     var $_delim;
 
-    function IXR_ClassServer($delim = '.', $wait = false)
+    function __construct($delim = '.', $wait = false)
     {
-        $this->IXR_Server(array(), false, $wait);
+        parent::__construct(array(), false, $wait);
         $this->_delimiter = $delim;
         $this->_objects = array();
     }

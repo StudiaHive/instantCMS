@@ -15,6 +15,7 @@
  * @package    Smarty
  * @subpackage Cacher
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_CacheResource_File extends Smarty_CacheResource
 {
     /**

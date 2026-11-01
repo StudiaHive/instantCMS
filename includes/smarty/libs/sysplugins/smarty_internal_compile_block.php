@@ -15,6 +15,7 @@
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Block extends Smarty_Internal_CompileBase
 {
 
@@ -259,6 +260,7 @@ class Smarty_Internal_Compile_Block extends Smarty_Internal_CompileBase
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Blockclose extends Smarty_Internal_CompileBase
 {
     /**
@@ -357,6 +359,7 @@ class Smarty_Internal_Compile_Blockclose extends Smarty_Internal_CompileBase
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Private_Child_Block extends Smarty_Internal_CompileBase
 {
 
@@ -415,6 +418,7 @@ class Smarty_Internal_Compile_Private_Child_Block extends Smarty_Internal_Compil
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Private_Child_Blockclose extends Smarty_Internal_CompileBase
 {
 

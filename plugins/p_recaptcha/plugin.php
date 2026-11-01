@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class p_recaptcha extends cmsPlugin {
 
     private $api_url = 'https://www.google.com/recaptcha/api/siteverify';

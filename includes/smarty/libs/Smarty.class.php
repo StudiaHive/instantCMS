@@ -101,6 +101,7 @@ include_once SMARTY_SYSPLUGINS_DIR . 'smarty_internal_cacheresource_file.php';
  *
  * @package Smarty
  */
+#[\AllowDynamicProperties]
 class Smarty extends Smarty_Internal_TemplateBase
 {
     /**#@+
@@ -1607,6 +1608,7 @@ if (Smarty::$_CHARSET !== 'UTF-8') {
  *
  * @package Smarty
  */
+#[\AllowDynamicProperties]
 class SmartyException extends Exception
 {
     public static $escape = false;
@@ -1622,6 +1624,7 @@ class SmartyException extends Exception
  *
  * @package Smarty
  */
+#[\AllowDynamicProperties]
 class SmartyCompilerException extends SmartyException
 {
     public function __toString()
@@ -1631,10 +1634,10 @@ class SmartyCompilerException extends SmartyException
 
     /**
      * The line number of the template error
+     * (inherited from Exception; redeclaring it is a fatal error on PHP 8.1+)
      *
      * @type int|null
      */
-    public $line = null;
     /**
      * The template source snippet relating to the error
      *

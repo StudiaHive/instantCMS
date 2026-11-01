@@ -13,6 +13,7 @@
  * @subpackage Cacher
  * @author     Rodney Rehm
  */
+#[\AllowDynamicProperties]
 abstract class Smarty_CacheResource_Custom extends Smarty_CacheResource
 {
     /**

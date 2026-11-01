@@ -35,6 +35,7 @@ require_once(dirname(__FILE__) . '/Smarty.class.php');
  *
  * @package Smarty
  */
+#[\AllowDynamicProperties]
 class SmartyBC extends Smarty
 {
     /**

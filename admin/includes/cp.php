@@ -323,7 +323,7 @@ function cpPathway($separator='&raquo;'){
 
 }
 
-function cpAddPathway($title, $link){
+function cpAddPathway($title, $link=''){
 	$already = false;
     if (empty($link)) { $link = htmlspecialchars($_SERVER['REQUEST_URI']); }
 
@@ -564,7 +564,7 @@ function cpListTable($table, $_fields, $_actions, $where='', $orderby='title'){
                             if ($table != 'cms_components'){
                                 echo '<td class="'.$row_class.'" valign="middle">'.$otstup.'<a class="lt_link" href="'.$link.'">'.$data.'</a></td>'. "\n";
                             } else {
-                                $data = function_exists('cpComponentHasConfig') && cpComponentHasConfig($item['link']) ?
+                                $data = function_exists('cpComponentHasConfig') && cpComponentHasConfig($item) ?
                                         '<a class="lt_link" href="'.$link.'">'.$data.'</a>' :
                                         $data;
                                 echo '<td class="'.$row_class.'" valign="middle">
@@ -652,7 +652,7 @@ function cpListTable($table, $_fields, $_actions, $where='', $orderby='title'){
                                 $link   = $_actions[$key]['link'];
 
                                 foreach($item as $f=>$v){
-                                    $link = str_replace('%'.$f.'%', $v, $link);
+                                    $link = str_replace('%'.$f.'%', (string)$v, $link);
                                 }
 
 								if (!isset($_actions[$key]['confirm'])){

@@ -11,6 +11,7 @@
 # You can remove it, but I would be pleased if you left it. ;)
 # See kcaptcha_config.php for customization
 
+#[\AllowDynamicProperties]
 class KCAPTCHA {
 
     private $keystring = '';
@@ -37,7 +38,7 @@ class KCAPTCHA {
             while (true) {
                 $this->keystring = '';
                 for ($i = 0; $i < $length; $i++) {
-                    $this->keystring.=$allowed_symbols{mt_rand(0, mb_strlen($allowed_symbols) - 1)};
+                    $this->keystring.=$allowed_symbols[mt_rand(0, mb_strlen($allowed_symbols) - 1)];
                 }
                 if (!preg_match('/cp|cb|ck|c6|c9|rn|rm|mm|co|do|cl|db|qp|qb|dp|ww/', $this->keystring))
                     break;
@@ -59,13 +60,13 @@ class KCAPTCHA {
                 $transparent = (imagecolorat($font, $i, 0) >> 24) == 127;
 
                 if (!$reading_symbol && !$transparent) {
-                    $font_metrics[$alphabet{$symbol}] = array('start' => $i);
+                    $font_metrics[$alphabet[$symbol]] = array('start' => $i);
                     $reading_symbol                   = true;
                     continue;
                 }
 
                 if ($reading_symbol && $transparent) {
-                    $font_metrics[$alphabet{$symbol}]['end'] = $i;
+                    $font_metrics[$alphabet[$symbol]]['end'] = $i;
                     $reading_symbol                          = false;
                     $symbol++;
                     continue;
@@ -85,7 +86,7 @@ class KCAPTCHA {
             if ($odd == 0)
                 $odd = -1;
             for ($i = 0; $i < $length; $i++) {
-                $m = $font_metrics[$this->keystring{$i}];
+                $m = $font_metrics[$this->keystring[$i]];
 
                 $y = (($i % 2) * $fluctuation_amplitude - $fluctuation_amplitude / 2) * $odd + mt_rand(-round($fluctuation_amplitude / 3), round($fluctuation_amplitude / 3)) + ($height - $fontfile_height) / 2;
 
@@ -122,7 +123,7 @@ class KCAPTCHA {
                 } else {
                     $shift = 1;
                 }
-                imagecopy($img, $font, $x - $shift, $y, $m['start'], 1, $m['end'] - $m['start'], $fontfile_height);
+                imagecopy($img, $font, (int)($x - $shift), (int)$y, $m['start'], 1, $m['end'] - $m['start'], $fontfile_height);
                 $x+=$m['end'] - $m['start'] - $shift;
             }
         } while ($x >= $width - 10); // while not fit in canvas
@@ -172,10 +173,10 @@ class KCAPTCHA {
                 if ($sx < 0 || $sy < 0 || $sx >= $width - 1 || $sy >= $height - 1) {
                     continue;
                 } else {
-                    $color    = imagecolorat($img, $sx, $sy) & 0xFF;
-                    $color_x  = imagecolorat($img, $sx + 1, $sy) & 0xFF;
-                    $color_y  = imagecolorat($img, $sx, $sy + 1) & 0xFF;
-                    $color_xy = imagecolorat($img, $sx + 1, $sy + 1) & 0xFF;
+                    $color    = imagecolorat($img, (int)$sx, (int)$sy) & 0xFF;
+                    $color_x  = imagecolorat($img, (int)$sx + 1, (int)$sy) & 0xFF;
+                    $color_y  = imagecolorat($img, (int)$sx, (int)$sy + 1) & 0xFF;
+                    $color_xy = imagecolorat($img, (int)$sx + 1, (int)$sy + 1) & 0xFF;
                 }
 
                 if ($color == 255 && $color_x == 255 && $color_y == 255 && $color_xy == 255) {
@@ -206,7 +207,7 @@ class KCAPTCHA {
                     $newblue  = $newcolor0 * $foreground_color[2] + $newcolor * $background_color[2];
                 }
 
-                imagesetpixel($img2, $x, $y, imagecolorallocate($img2, $newred, $newgreen, $newblue));
+                imagesetpixel($img2, $x, $y, imagecolorallocate($img2, (int)$newred, (int)$newgreen, (int)$newblue));
             }
         }
 

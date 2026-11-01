@@ -572,7 +572,7 @@ function applet_modules(){
                     <div><strong><?php echo $_LANG['AD_LANG_TITLES']; ?></strong> <span class="hinttext">&mdash; <?php echo $_LANG['AD_LANG_TITLES_HINT']; ?></span></div>
                     <?php foreach ($langs as $lang) { ?>
 
-                    <div><strong><?php echo $lang; ?>:</strong> <input name="titles[<?php echo $lang; ?>]" type="text" style="width:97%" value="<?php echo htmlspecialchars(@$mod['titles'][$lang]);?>" placeholder="<?php echo $_LANG['AD_HINT_DEFAULT']; ?>" /></div>
+                    <div><strong><?php echo $lang; ?>:</strong> <input name="titles[<?php echo $lang; ?>]" type="text" style="width:97%" value="<?php echo htmlspecialchars((string)@$mod['titles'][$lang]);?>" placeholder="<?php echo $_LANG['AD_HINT_DEFAULT']; ?>" /></div>
                     <?php } ?>
                     <?php } ?>
                     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:10px;">

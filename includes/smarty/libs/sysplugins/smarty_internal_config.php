@@ -15,6 +15,7 @@
  * @subpackage Config
  * @ignore
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Config
 {
     /**

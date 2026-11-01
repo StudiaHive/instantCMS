@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class cmsgeo {
 
     private $url = 'http://ipgeobase.ru:7020/geo?ip=';

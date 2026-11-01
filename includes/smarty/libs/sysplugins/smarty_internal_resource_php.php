@@ -9,6 +9,7 @@
  * @author     Uwe Tews
  * @author     Rodney Rehm
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Resource_PHP extends Smarty_Resource_Uncompiled
 {
     /**

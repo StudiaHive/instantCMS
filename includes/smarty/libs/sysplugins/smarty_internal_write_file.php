@@ -13,6 +13,7 @@
  * @package    Smarty
  * @subpackage PluginsInternal
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Write_File
 {
     /**

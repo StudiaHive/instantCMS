@@ -1,7 +1,7 @@
 [ InstantCMS - Community Management System ]
 -------------------------------------------------------------------------------
 
-[ Версия:    ] 1.10.7
+[ Версия:    ] 1.11.0 (community revival, основано на InstantCMS 1.10.7)
 [ Дата:      ] 2016-07-26
 [ Лицензия:  ] GNU/GPL v2
 
@@ -10,8 +10,8 @@
 [ сайт:      ] www.instantcms.ru
 
 [ требуется: ] apache + mod_rewrite
-[            ] php 5.3+ (+GD, iconv, mbstrings)
-[            ] mysql 5
+[            ] php 7.4 / 8.x (+GD, iconv, mbstring, mysqli, json, simplexml)
+[            ] mysql 5.x / 8.0, MariaDB
 
 Система распространяется по принципу "КАК ЕСТЬ" и БЕЗ ГАРАНТИЙНЫХ ОБЯЗАТЕЛЬСТВ.
 Вы можете свободно использовать и модифицировать систему, но исключительно на

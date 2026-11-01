@@ -11,11 +11,12 @@
 //                                                                            //
 /******************************************************************************/
 
-define('CORE_VERSION', 		'1.10.7');
+define('CORE_VERSION', 		'1.11.0');
 define('CORE_BUILD', 		'1');
 define('CORE_VERSION_DATE', '2016-07-26');
-define('CORE_BUILD_DATE', 	'2016-07-26');
+define('CORE_BUILD_DATE', 	'2026-11-01');
 
+#[\AllowDynamicProperties]
 class cmsCore {
 
     private static   $instance;
@@ -445,7 +446,7 @@ class cmsCore {
 		if(is_array($this->components)) { return $this->components; }
 
         $inDB = cmsDatabase::getInstance();
-        $sql  = "SELECT id, title, link, config, internal, published, version, system FROM cms_components ORDER BY title";
+        $sql  = "SELECT id, title, link, config, internal, published, version, `system` FROM cms_components ORDER BY title";
         $result = $inDB->query($sql);
 
         if($inDB->num_rows($result)){
@@ -660,7 +661,7 @@ class cmsCore {
      */
     public static function setCookie($name, $value, $time){
         $key_name = cmsConfig::getConfig('cookie_key');
-        setcookie($key_name.'['.$name.']', $value, $time, '/', null, false, true);
+        setcookie($key_name.'['.$name.']', (string)$value, (int)$time, '/', '', false, true);
     }
 
     /**
@@ -728,7 +729,9 @@ class cmsCore {
      */
     private function detectURI(){
 
-        if(strpos($_SERVER['REQUEST_URI'], '/', 1) === 1){
+        if(!isset($_SERVER['REQUEST_URI'])){ $_SERVER['REQUEST_URI'] = ''; } // CLI (cron.php)
+
+        if(strlen($_SERVER['REQUEST_URI']) > 1 && strpos($_SERVER['REQUEST_URI'], '/', 1) === 1){
             return -1;
         }
 
@@ -1935,12 +1938,12 @@ class cmsCore {
 	    global $_LANG;
 
 		// формируем входную $date с учетом смещения
-        $date = date('Y-m-d H:i:s', strtotime($date)+($inConf->timediff*3600));
+        $date = date('Y-m-d H:i:s', strtotime($date)+((float)$inConf->timediff*3600));
 
 		// сегодняшняя дата
-		$today     = date('Y-m-d', strtotime(date('Y-m-d H:i:s'))+($inConf->timediff*3600));
+		$today     = date('Y-m-d', strtotime(date('Y-m-d H:i:s'))+((float)$inConf->timediff*3600));
 		// вчерашняя дата
-		$yesterday = date('Y-m-d', strtotime(date('Y-m-d H:i:s'))-(86400)+($inConf->timediff*3600));
+		$yesterday = date('Y-m-d', strtotime(date('Y-m-d H:i:s'))-(86400)+((float)$inConf->timediff*3600));
 
 		// получаем значение даты и времени
 		list($day, $time) = explode(' ', $date);
@@ -1994,7 +1997,7 @@ class cmsCore {
 
 	    global $_LANG;
 
-        $d = date('w', strtotime($date)+(cmsConfig::getConfig('timediff')*3600));
+        $d = date('w', strtotime($date)+((float)cmsConfig::getConfig('timediff')*3600));
 
         $days_week = array($_LANG['SUNDAY'], $_LANG['MONDAY'], $_LANG['TUESDAY'], $_LANG['WEDNESDAY'], $_LANG['THURSDAY'], $_LANG['FRIDAY'], $_LANG['SATURDAY']);
 
@@ -2146,7 +2149,7 @@ class cmsCore {
 
         $string = trim((string)$input);
         //Если magic_quotes_gpc = On, сначала убираем экранирование
-        $string = (@get_magic_quotes_gpc()) ? stripslashes($string) : $string;
+        $string = (function_exists('get_magic_quotes_gpc') && version_compare(PHP_VERSION, '7.4.0', '<') && @get_magic_quotes_gpc()) ? stripslashes($string) : $string;
         $string = rtrim($string, ' \\');
         if ($strip_tags) {
             $string = cmsDatabase::getInstance()->escape_string(strip_tags($string));

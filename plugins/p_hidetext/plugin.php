@@ -11,6 +11,7 @@
 //                                                                            //
 /******************************************************************************/
 
+#[\AllowDynamicProperties]
 class p_hidetext extends cmsPlugin {
 
     public function __construct(){

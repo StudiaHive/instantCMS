@@ -14,6 +14,7 @@
  * @package    Smarty
  * @subpackage Compiler
  */
+#[\AllowDynamicProperties]
 class Smarty_Internal_Compile_Private_Special_Variable extends Smarty_Internal_CompileBase
 {
     /**
